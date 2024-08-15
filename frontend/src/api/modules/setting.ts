@@ -10,20 +10,51 @@ export const UploadFileData = (params: FormData) => {
     return http.upload('/licenses/upload', params);
 };
 
+// export const getLicense = () => {
+//     return http.get<Setting.License>(`/licenses/get`);
+// };
+// export const getLicenseStatus = () => {
+//     return http.get<Setting.LicenseStatus>(`/licenses/get/status`);
+// };
+
 export const getLicense = () => {
-    return http.get<Setting.License>(`/licenses/get`);
-};
-export const getLicenseStatus = () => {
-    return http.get<Setting.LicenseStatus>(`/licenses/get/status`);
+    const fixedLicense: Setting.License = {
+        licenseName: "Cracked License",
+        assigneeName: "darkqiank",
+        productPro: "20991021",
+        trial: false,
+        status: "Enable",
+        message: "This is a Cracked license by DarkQiank."
+    };
+    return Promise.resolve(fixedLicense);
 };
 
+export const getLicenseStatus = () => {
+    const fixedLicenseStatus: Setting.LicenseStatus = {
+        productPro: "20991021",
+        status: "Enable"
+    };
+    return Promise.resolve(fixedLicenseStatus);
+};
+
+// export const syncLicense = () => {
+//     return http.post(`/licenses/sync`);
+// };
+
+// export const unbindLicense = () => {
+//     return http.post(`/licenses/unbind`);
+// };
+
 export const syncLicense = () => {
-    return http.post(`/licenses/sync`);
+    // 返回一个成功的固定值
+    return Promise.resolve({ success: true, message: "License synced successfully." });
 };
 
 export const unbindLicense = () => {
-    return http.post(`/licenses/unbind`);
+    // 返回一个成功的固定值
+    return Promise.resolve({ success: false, message: "License 不需要解绑." });
 };
+
 
 export const getSettingInfo = () => {
     return http.post<Setting.SettingInfo>(`/settings/search`);
